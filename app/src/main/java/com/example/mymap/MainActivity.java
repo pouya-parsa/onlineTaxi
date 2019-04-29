@@ -3,8 +3,8 @@ package com.example.mymap;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,16 +26,22 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 
-import java.util.Locale;
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap googleMap;
+
     Location userCurrentlocation;
+
     LocationManager locationManager;
     LocationListener locationListener = null;
+
+    userDatasource userDS;
 
     onMapClick onMapClick;
 
@@ -53,11 +60,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         viewManager = new ViewManager(this);
         viewManager.showMapPanel();
 
-//        TextView tx = findViewById(R.id.title);
-//
-//        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/Yekan.ttf");
-//
-//        tx.setTypeface(custom_font);
+        //FirebaseApp.initializeApp(this);
+
+
+        TextView balance_txt = findViewById(R.id.balance);
+        TextView fullname_txt = findViewById(R.id.fullname);
+
+        userDS = new userDatasource("pouya", balance_txt, fullname_txt);
 
 
     }
@@ -149,8 +158,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         this.onMapClick.deleteMarkers();
     }
 
-    public void arrived(View view) {
-        viewManager.arrivedToDestiny();
+    public void arrived(View view) throws IOException {
+
+        TextView balance_txt = findViewById(R.id.balance);
+
+        TextView price = findViewById(R.id.price);
+
+        if(Double.valueOf(price.getText().toString()) > Double.valueOf(balance_txt.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "اعتبار شما کافی نیست", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            userDS.updateBalance("pouya",
+                    Double.valueOf(price.getText().toString()));
+
+            viewManager.arrivedToDestiny();
+        }
+
+
+    }
+
+    public void saveNumber(View view) {
+        Toast.makeText(getApplicationContext(), "شماره ی راننده در مخاطبین شما ذخیره شد", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mymap.R;
 import com.example.mymap.ViewManager;
@@ -53,9 +54,11 @@ public class onMapClick implements GoogleMap.OnMapClickListener {
                    ), 12);
            googleMap.animateCamera(update);
 
+           TextView balance_txt = activity.findViewById(R.id.balance);
+
+
            TextView price = activity.findViewById(R.id.price);
            price.setText(String.valueOf((int) (this.calculateBill())));
-
 
            ViewManager viewManager = new ViewManager(activity);
            viewManager.showRequestPanel();

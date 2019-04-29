@@ -91,7 +91,7 @@ public class ViewManager {
         arrivedPanel.setVisibility(View.VISIBLE);
 
         ImageView arrivedIcon = activity.findViewById(R.id.arrivedIcon);
-        arrivedIcon.setVisibility(View.GONE);
+        arrivedIcon.setVisibility(View.VISIBLE);
 
 
     }

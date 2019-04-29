@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "710541330971",
+    "firebase_url": "https://realonlinetaxi.firebaseio.com",
+    "project_id": "realonlinetaxi",
+    "storage_bucket": "realonlinetaxi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710541330971:android:c20369dce2e13816",
+        "android_client_info": {
+          "package_name": "com.example.map"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710541330971-ip1sktd3kl8latvlu9she2kl3s2m2jdi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.map",
+            "certificate_hash": "fa67441bbe6e01666bde721e85185e041ff2b362"
+          }
+        },
+        {
+          "client_id": "710541330971-nqrk8gjv6rgqbvr0d1ko2o5gf5vslhh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGpJo5DmoXEIXVjcRG0eUjwXNpymfjUYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710541330971-nqrk8gjv6rgqbvr0d1ko2o5gf5vslhh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
