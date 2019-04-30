@@ -34,7 +34,7 @@ public class userDatasource extends Datasource {
     }
 
     public void getUserBalanceHandler(String username) {
-        ref = database.getReference("passengers/" + username + "/balance");
+        ref = database.getReference( "users/" + username + "/balance");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -53,7 +53,7 @@ public class userDatasource extends Datasource {
     }
 
     public void getUserFullnameHandler(String username) {
-        ref = database.getReference("passengers/" + username + "/name");
+        ref = database.getReference("users/" + username + "/name");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -72,7 +72,7 @@ public class userDatasource extends Datasource {
     }
 
     public void updateBalance(String username, double value) {
-        ref = database.getReference("passengers/" + username + "/balance");
+        ref = database.getReference("users/" + username + "/balance");
         ref.setValue(this.userBalance - value);
     }
 }

@@ -33,4 +33,15 @@
 
     </style>
 
+    <style name="loginButtons">
+        <item name="android:background">#ffc600</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="logo">
+        <item name="android:fontFamily">@font/ordi</item>
+        <item name="android:textSize">45dp</item>
+        <item name="android:textColor">#FFBF00</item>
+    </style>
+
 </resources>

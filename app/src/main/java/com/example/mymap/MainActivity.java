@@ -2,6 +2,7 @@ package com.example.mymap;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 import org.w3c.dom.Text;
 
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     userDatasource userDS;
 
     onMapClick onMapClick;
-
+    String username;
 
     ViewManager viewManager;
 
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
 
+
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -60,13 +64,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         viewManager = new ViewManager(this);
         viewManager.showMapPanel();
 
+
+        Intent intent = getIntent();
+        this.username = intent.getStringExtra("user");
+
         //FirebaseApp.initializeApp(this);
 
 
         TextView balance_txt = findViewById(R.id.balance);
         TextView fullname_txt = findViewById(R.id.fullname);
 
-        userDS = new userDatasource("pouya", balance_txt, fullname_txt);
+        userDS = new userDatasource(intent.getStringExtra("user"), balance_txt, fullname_txt);
 
 
     }
@@ -168,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Toast.makeText(getApplicationContext(), "اعتبار شما کافی نیست", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            userDS.updateBalance("pouya",
+            userDS.updateBalance(this.username,
                     Double.valueOf(price.getText().toString()));
 
             viewManager.arrivedToDestiny();
@@ -179,6 +187,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void saveNumber(View view) {
         Toast.makeText(getApplicationContext(), "شماره ی راننده در مخاطبین شما ذخیره شد", Toast.LENGTH_SHORT).show();
+    }
+
+    public void exit(View view) {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
 

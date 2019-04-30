@@ -15,7 +15,7 @@
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:label="map">
 
             <intent-filter>
@@ -24,6 +24,9 @@
             </intent-filter>
 
         </activity>
+
+        <activity android:name=".MainActivity"></activity>
+
         <meta-data android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDXy_Lq0ctuTHJgLTIrGCw8Q0ioW5aNRro" />
     </application>
